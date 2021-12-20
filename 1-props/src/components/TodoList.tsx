@@ -1,4 +1,4 @@
-import { Button, Input, Flex, Checkbox, Heading, Text } from "@chakra-ui/react"
+import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
 import { deleteTodoType, todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
 
