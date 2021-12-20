@@ -6,7 +6,7 @@ export type todo = {
   done: boolean
 }
 
-export type addTodoType = () => void
+export type addTodoType = (newTodo: string) => void
 export type updateTodoType = (id: number, text: string) => void
 export type deleteTodoType = (id: number) => void
 export type toggleTodoType = (id: number) => void
@@ -37,18 +37,12 @@ const toggleTodo = (todos: todo[], id: number): todo[] =>
 // State management using props passing
 export const useTodos = (initial: todo[] = []) => {
   const [todos, setTodos] = useState(initial)
-  const [newTodo, setNewTodo] = useState("")
 
   return {
     todos,
-    newTodo,
 
     setTodos,
-    setNewTodo,
-    addTodo: useCallback(() => {
-      setTodos((todos) => addTodo(todos, newTodo))
-      setNewTodo("")
-    }, [newTodo]),
+    addTodo: (newTodo: string) => setTodos((todos) => addTodo(todos, newTodo)),
     updateTodo: (id: number, text: string) => setTodos((todos) => updateTodo(todos, id, text)),
     toggleTodo: (id: number) => setTodos((todos) => toggleTodo(todos, id)),
     deleteTodo: (id: number) => setTodos((todos) => deleteTodo(todos, id)),
