@@ -7,7 +7,9 @@ type BarProps = {
 }
 const Bar = ({ load }: BarProps) => {
   const onLoad = async () => {
-    const resp = await fetch("https://raw.githubusercontent.com/jherr/todos-four-ways/master/data/todos.json")
+    const resp = await fetch(
+      "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45bd8eb45d10aabc76f30/raw/todos.json"
+    )
     const todos = await resp.json()
     await load(todos)
   }
