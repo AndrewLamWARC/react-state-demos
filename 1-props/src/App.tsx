@@ -14,7 +14,7 @@ const App = () => {
       <Box maxWidth={"12xl"} margin="auto" p={5}>
         <Bar load={ts.load} />
         <TodoList todos={ts.todos} toggleTodo={ts.toggleTodo} updateTodo={ts.updateTodo} deleteTodo={ts.deleteTodo} />
-        <TodoItem newTodo={ts.newTodo} setNewTodo={ts.setNewTodo} addTodo={ts.addTodo} />
+        <TodoItem addTodo={ts.addTodo} />
         <LogEvents todos={ts.todos} />
       </Box>
     </ChakraProvider>
