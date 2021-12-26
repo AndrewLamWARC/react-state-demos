@@ -1,22 +1,26 @@
 import { ChakraProvider, Box, theme } from "@chakra-ui/react"
-import { useLayoutEffect } from "react"
-import { Bar } from "./components/Bar"
-import { TodoItem } from "./components/TodoItem"
+import { Suspense, useLayoutEffect } from "react"
+import { Navbar } from "./components/Navbar"
+import { TodoItemNew } from "./components/TodoItemNew"
 import { TodoList } from "./components/TodoList"
 import { TodoProvider, useTodoContext } from "./stores/todoStore"
 
+export { App }
+
 const App = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <TodoProvider>
-        <Box maxWidth={"12xl"} margin="auto" p={5}>
-          <Bar />
-          <TodoList />
-          <TodoItem />
-          <LogEvents />
-        </Box>
-      </TodoProvider>
-    </ChakraProvider>
+    <TodoProvider>
+      <ChakraProvider theme={theme}>
+        <Suspense fallback={<div>Fallback...</div>}>
+          <Box maxWidth={"12xl"} margin="auto" p={5}>
+            <Navbar />
+            <TodoList />
+            <TodoItemNew />
+            <LogEvents />
+          </Box>
+        </Suspense>
+      </ChakraProvider>
+    </TodoProvider>
   )
 }
 
@@ -29,5 +33,3 @@ const LogEvents = () => {
   console.log("Render")
   return null
 }
-
-export { App }

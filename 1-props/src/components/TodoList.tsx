@@ -1,6 +1,6 @@
-import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react"
-import { DeleteIcon } from "@chakra-ui/icons"
+import { Heading } from "@chakra-ui/react"
 import { deleteTodoType, todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
+import { TodoItem } from "./TodoItem"
 
 type TodoListItemsProps = {
   todos: todo[]
@@ -8,17 +8,12 @@ type TodoListItemsProps = {
   updateTodo: updateTodoType
   deleteTodo: deleteTodoType
 }
+
 const TodoListItems = ({ todos, toggleTodo, updateTodo, deleteTodo }: TodoListItemsProps) => {
   return (
     <>
       {todos.map((todo: todo) => (
-        <Flex pt={2} key={todo.id}>
-          <Checkbox onClick={() => toggleTodo(todo.id)} checked={todo.done} />
-          <Input mx={2} value={todo.text} onChange={(e) => updateTodo(todo.id, e.target.value)} />
-          <Button onClick={() => deleteTodo(todo.id)}>
-            <DeleteIcon />
-          </Button>
-        </Flex>
+        <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} updateTodo={updateTodo} deleteTodo={deleteTodo} />
       ))}
     </>
   )

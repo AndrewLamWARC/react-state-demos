@@ -1,13 +1,15 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import { StrictMode } from "react"
+import { render } from "react-dom"
 import { App } from "./App"
 import reportWebVitals from "./reportWebVitals"
 
-ReactDOM.render(
-  <React.StrictMode>
+// New Root API landing in react 18. Following is deprecated and now called Legacy Root API
+const container = document.getElementById("root")
+render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </StrictMode>,
+  container
 )
 
 // If you want to start measuring performance in your app, pass a function

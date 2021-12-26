@@ -1,35 +1,29 @@
-import { Button, Input, Grid } from "@chakra-ui/react"
-import { AddIcon } from "@chakra-ui/icons"
-import { useState } from "react"
-import { addTodoType } from "../stores/todoStore"
-
-type TodoItemProps = {
-  addTodo: addTodoType
-}
-
-const TodoItem = ({ addTodo }: TodoItemProps) => {
-  const [newTodo, setNewTodo] = useState("")
-  const onAddNewTodo = () => {
-    addTodo(newTodo)
-    setNewTodo("")
-  }
-  return (
-    <Grid pt={2} templateColumns="10fr 1fr" columnGap="3">
-      <Input
-        placeholder="New todo"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            onAddNewTodo()
-          }
-        }}
-      />
-      <Button onClick={onAddNewTodo}>
-        <AddIcon />
-      </Button>
-    </Grid>
-  )
-}
+import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react"
+import { DeleteIcon } from "@chakra-ui/icons"
+import { deleteTodoType, todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
 
 export { TodoItem }
+
+type TodoItemProps = {
+  todo: todo
+  toggleTodo: toggleTodoType
+  updateTodo: updateTodoType
+  deleteTodo: deleteTodoType
+}
+
+const TodoItem = ({ todo, toggleTodo, updateTodo, deleteTodo }: TodoItemProps) => {
+  return (
+    <Flex pt={2} key={todo.id}>
+      <Checkbox onChange={() => toggleTodo(todo.id)} checked={todo.done} defaultChecked={todo.done} />
+      <Input
+        mx={2}
+        value={todo.text}
+        onChange={(e) => updateTodo(todo.id, e.target.value)}
+        textDecoration={todo.done ? "line-through" : ""}
+      />
+      <Button onClick={() => deleteTodo(todo.id)}>
+        <DeleteIcon />
+      </Button>
+    </Flex>
+  )
+}

@@ -1,7 +1,7 @@
 import { ChakraProvider, Box, theme } from "@chakra-ui/react"
-import { useLayoutEffect } from "react"
-import { Bar } from "./components/Bar"
-import { TodoItem } from "./components/TodoItem"
+import { Suspense, useLayoutEffect } from "react"
+import { Navbar } from "./components/Navbar"
+import { TodoItemNew } from "./components/TodoItemNew"
 import { TodoList } from "./components/TodoList"
 import { todo, useTodos } from "./stores/todoStore"
 
@@ -11,12 +11,14 @@ const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Box maxWidth={"12xl"} margin="auto" p={5}>
-        <Bar load={ts.load} />
-        <TodoList todos={ts.todos} toggleTodo={ts.toggleTodo} updateTodo={ts.updateTodo} deleteTodo={ts.deleteTodo} />
-        <TodoItem addTodo={ts.addTodo} />
-        <LogEvents todos={ts.todos} />
-      </Box>
+      <Suspense fallback={<div>Fallback...</div>}>
+        <Box maxWidth={"12xl"} margin="auto" p={5}>
+          <Navbar load={ts.loadTodos} />
+          <TodoList todos={ts.todos} toggleTodo={ts.toggleTodo} updateTodo={ts.updateTodo} deleteTodo={ts.deleteTodo} />
+          <TodoItemNew addTodo={ts.addTodo} />
+          <LogEvents todos={ts.todos} />
+        </Box>
+      </Suspense>
     </ChakraProvider>
   )
 }

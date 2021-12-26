@@ -1,12 +1,13 @@
 # react-state-demos
 
-Introduction to js state libraries
+Introduction to js state management libraries
 
 ## Ambitions
 
-- The need for state
+- The need for state is driven by a simple equation. "UI is a function of state"
+ui = f(state)
 
-- Local state, global state and remote/backend state
+- Local state, global state and remote state
 
 - Lift state up the component hierarchy
 
