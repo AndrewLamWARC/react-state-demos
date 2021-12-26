@@ -39,12 +39,14 @@ export const useTodos = (initial: todo[] = []) => {
   const [todos, setTodos] = useState(initial)
 
   return {
+    // State
     todos,
 
+    // Actions
     addTodo: (newTodo: string) => setTodos((todos) => addTodo(todos, newTodo)),
     updateTodo: (id: number, text: string) => setTodos((todos) => updateTodo(todos, id, text)),
     toggleTodo: (id: number) => setTodos((todos) => toggleTodo(todos, id)),
     deleteTodo: (id: number) => setTodos((todos) => deleteTodo(todos, id)),
-    load: async (loadedTodos: todo[]) => setTodos(loadedTodos)
+    loadTodos: async (loadedTodos: todo[]) => setTodos(loadedTodos) // async action
   }
 }

@@ -1,61 +1,66 @@
+import { v4 } from "uuid"
 import { useState, createContext, useContext, ReactNode } from "react"
 
-export type todo = {
-  id: number
+export type { Todo }
+export { useTodos, TodoProvider, useTodoContext }
+
+type Todo = {
+  id: string
   text: string
   done: boolean
 }
 
-export type addTodoType = (newTodo: string) => void
-export type updateTodoType = (id: number, text: string) => void
-export type deleteTodoType = (id: number) => void
-export type toggleTodoType = (id: number) => void
-
-const addTodo = (todos: todo[], text: string): todo[] => [
+const addTodo = (todos: Todo[], text: string): Todo[] => [
   ...todos,
   {
-    id: Math.max(1, ...todos.map(({ id }) => id)) + 1,
+    id: v4(),
     text,
     done: false
   }
 ]
 
-const updateTodo = (todos: todo[], id: number, text: string): todo[] =>
+const updateTodo = (todos: Todo[], id: string, text: string): Todo[] =>
   todos.map((todo) => ({
     ...todo,
     text: todo.id === id ? text : todo.text
   }))
 
-const deleteTodo = (todos: todo[], id: number): todo[] => todos.filter((todo) => todo.id !== id)
+const deleteTodo = (todos: Todo[], id: string): Todo[] => todos.filter((todo) => todo.id !== id)
 
-const toggleTodo = (todos: todo[], id: number): todo[] =>
+const toggleTodo = (todos: Todo[], id: string): Todo[] =>
   todos.map((todo) => ({
     ...todo,
     done: todo.id === id ? !todo.done : todo.done
   }))
 
 // State management using context api
-export const useTodos = (initial: todo[] = []) => {
+const useTodos = (initial: Todo[] = []) => {
   const [todos, setTodos] = useState(initial)
 
   return {
+    // State
     todos,
 
+    // Actions
     addTodo: (newTodo: string) => setTodos((todos) => addTodo(todos, newTodo)),
-    updateTodo: (id: number, text: string) => setTodos((todos) => updateTodo(todos, id, text)),
-    toggleTodo: (id: number) => setTodos((todos) => toggleTodo(todos, id)),
-    deleteTodo: (id: number) => setTodos((todos) => deleteTodo(todos, id)),
-    load: async (loadedTodos: todo[]) => setTodos(loadedTodos)
+    updateTodo: (id: string, text: string) => setTodos((todos) => updateTodo(todos, id, text)),
+    toggleTodo: (id: string) => setTodos((todos) => toggleTodo(todos, id)),
+    deleteTodo: (id: string) => setTodos((todos) => deleteTodo(todos, id)),
+    loadTodos: async (loadedTodos: Todo[]) =>
+      setTodos((prev) => {
+        const prevTodoIds = prev.map((t) => t.id)
+        return [...prev, ...loadedTodos.filter((t) => !prevTodoIds.includes(t.id))]
+      }) // async action
   }
 }
 
 const TodoContext = createContext<ReturnType<typeof useTodos> | null>(null)
 
-export const TodoProvider = ({ children }: { children: ReactNode }) => {
+const TodoProvider = ({ children }: { children: ReactNode }) => {
   return <TodoContext.Provider value={useTodos([])}>{children}</TodoContext.Provider>
 }
 
-export const useTodoContext = () => {
+const useTodoContext = () => {
   const value = useContext(TodoContext)
   if (value === null) throw new Error("Please add TodoProvider")
   return value
