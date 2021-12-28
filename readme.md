@@ -1,10 +1,12 @@
 # react-state-demos
 
+<img align="center" width="5%" src="./assets/noun-office-man-2838664.svg">
+
 Introduction to state management libraries suitable for react
 
 ## The need for state
 
-UI = f(State)
+### UI = f(State)
 
 The need for state in react is driven by a simple equation - "UI as a function of state". To put it another way, UI is dependent on state.
 
@@ -82,11 +84,11 @@ State libraries can be classified between provider based and non-provider based.
 
 ## Todo app hierarchy
 
-App <- Navbar
+    App <- Navbar
 
-    <- TodoList <- TodoListItems <- [TodoItem]
+        <- TodoList <- TodoListItems <- [TodoItem]
 
-    <- TodoItemNew
+        <- TodoItemNew
 
 App is the root element of the application.
 
@@ -120,15 +122,13 @@ Jack is an excellent teacher and his way of explaining difficult subjects is unm
 
 I urge you to watch, support, like and subscribe to his channel to learn more about react, state managment and programming in general.
 
-## TODO
-
-Discuss the various kinds of state in react apps and make it clear that state management libraries mainly handle global state.
+## Local, global and remote states
 
 Local react state can be handled with useState hook or setState in older class component.
 
 Global state is state that needs to be shared amongst different components in the component tree.
 Local state can become global if it is lifted up to a common parent and passed down to children either as direct props or through a context.
 
-Remote state also called backend state. This was previously lumped together with global state but libraries like react-query has been released to separate remote state from global state. Look up Tanner Linsley's youtube videos, the author of react-query, to understand the need for differentiate between global and remote state.
+Remote state also called backend state. This was previously lumped together with global state but libraries like react-query has been released to separate remote state from global state. Look up Tanner Linsley's youtube videos, the author of react-query, to understand the need to differentiate between global and remote state.
 
-Local state, global state and remote state
+Most state management libraries mainly handle global state and it was the dev's responsibility to ensure that global state is consistent with remote state. Newer libraries like Redux ToolKit query (RTK query), react-query and SWR was released to handle remote state.
