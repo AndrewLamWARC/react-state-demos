@@ -1,6 +1,6 @@
 # react-state-demos
 
-Introduction to state management libraries suitable for react
+[<img align="left" width="10%" src="./assets/noun-office-man-2838664.svg">] Introduction to state management libraries suitable for react
 
 ## The need for state
 
