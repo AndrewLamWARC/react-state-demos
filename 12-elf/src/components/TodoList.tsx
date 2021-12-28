@@ -1,11 +1,10 @@
 import { Heading } from "@chakra-ui/react"
 import { TodoItem } from "./TodoItem"
-import { Todo } from "../stores/todoStore"
-import { useTodoStoreState } from "../stores/todoStore"
+import { Todo, visibleTodos$ } from "../stores/todoStore.repository"
+import { useObservable } from "@ngneat/use-observable"
 
 const TodoListItems = () => {
-  const todos = useTodoStoreState((s) => s.todos)
-
+  const [todos] = useObservable(visibleTodos$)
   return (
     <>
       {todos.map((todo: Todo) => (
