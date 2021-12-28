@@ -82,11 +82,11 @@ State libraries can be classified between provider based and non-provider based.
 
 ## Todo app hierarchy
 
-App <- Navbar
+    App <- Navbar
 
-    <- TodoList <- TodoListItems <- [TodoItem]
+        <- TodoList <- TodoListItems <- [TodoItem]
 
-    <- TodoItemNew
+        <- TodoItemNew
 
 App is the root element of the application.
 
