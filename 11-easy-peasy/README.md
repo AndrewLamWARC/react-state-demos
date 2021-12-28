@@ -13,10 +13,10 @@ Easy-peasy like redux toolkit is a library built on top of redux to address the 
 
 ## Component hierarchy
 
-    App <- Bar
+    App <- Navbar
         
-        <- TodoList <- TodoListItems
+        <- TodoList <- TodoListItems <- [TodoItem]
         
-        <- TodoItem
+        <- TodoItemNew
 
 Another provider based state management system.

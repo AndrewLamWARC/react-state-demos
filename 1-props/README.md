@@ -10,6 +10,14 @@ Github stars: N/A
 
 Basic todo app with "global" state lifted up to parent App component
 
+- Lift state up the component hierarchy
+
+- Pass state down as props
+
+- Pass action down as props
+
+- Child components hook up actions from parent
+
 ## Component hierarchy
 
     App <- Navbar
