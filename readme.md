@@ -1,8 +1,18 @@
 # react-state-demos
 
-<img align="center" width="5%" src="./assets/noun-office-man-2838664.svg">
+<img align="center" width="8%" src="./assets/noun-office-man-2838664.svg">
 
 Introduction to state management libraries suitable for react
+
+## Running demos
+
+1. Pre-requisites: node 14+
+
+2. Clone this repository
+
+3. cd into each demo
+
+4. npm i && npm start
 
 ## The need for state
 
@@ -110,7 +120,7 @@ In a production system, the state of the todos would be stored centrally (single
 For production system, the initial load should load the state of the todos from the remote store on the backend.
 Every action on the frontend should eventually be commited to the remote store.
 
-If the state of the remote todo store can only be changed by user gestures on the frontend then there is no need to load todos from the remote store after the initial load. However, imagine a bulk job that runs on the backend to delete "old" todos, say todos 1 week or older. Then the frontend would need to have a strategy ensure consistency between the state in the remote store and the global store that lives in the frontend. Obviously we need to keep more state in the stores such as todo create date when we start talking about the age of a todo.
+If the state of the remote todo store can only be changed by user gestures on the frontend then there is no need to load all todos from the remote store after the initial load. However, imagine a bulk job that runs on the backend to delete "old" todos, say todos 1 week or older. Then the frontend would need to have a strategy ensure consistency between the state in the remote store and the global store that lives in the frontend. Obviously we need to keep more state in the stores such as todo create date when we start talking about the age of a todo.
 
 It should be clear that adding these domain requirements to the demos would add complexity. Which in turn would obscure the understanding of state management libraries. Thus, features have intentianally been left out.
 
@@ -120,15 +130,38 @@ I draw my inspiration for this work from Jack Herrington's youtube series on sta
 
 Jack is an excellent teacher and his way of explaining difficult subjects is unmatched. The code used in his videos are made public so you can watch his videos, understand the concepts in it's original code context which allows you to follow his line of reasoning exactly.
 
-I urge you to watch, support, like and subscribe to his channel to learn more about react, state managment and programming in general.
+Please watch, support, like and subscribe to his channel to learn more about react, state managment and programming in general.
 
-## Local, global and remote states
+## Client local, client global and server states
 
-Local react state can be handled with useState hook or setState in older class component.
+Client local react state can be handled with useState hook or setState in older class component.
 
-Global state is state that needs to be shared amongst different components in the component tree.
-Local state can become global if it is lifted up to a common parent and passed down to children either as direct props or through a context.
+Client global state is state that needs to be shared amongst different components in the component tree.
+Client local state can become global if it is lifted up to a common parent and passed down to children either as direct props or through a context.
 
-Remote state also called backend state. This was previously lumped together with global state but libraries like react-query has been released to separate remote state from global state. Look up Tanner Linsley's youtube videos, the author of react-query, to understand the need to differentiate between global and remote state.
+Server state also called remote state. This was previously lumped together with client global state and handled using all purpose state management libraries but newer libraries like react-query, SWR, RTK query has been released to specificaly manage server state. Look up Tanner Linsley's youtube videos, the author of react-query, to understand the need to differentiate between client and server state.
 
-Most state management libraries mainly handle global state and it was the dev's responsibility to ensure that global state is consistent with remote state. Newer libraries like Redux ToolKit query (RTK query), react-query and SWR was released to handle remote state.
+Most older state management libraries manage client global state and it was the dev's responsibility to ensure that state stays consistent with server state. The improvement in DX is worth it using these newer state management libraries if the app's requirement persists state remotely - this is the usual case for most medium to large scale apps.
+
+## My Wish list
+
+DX vs UX tension
+
+Good developer experiance with better than average user experiance
+
+### Good UX
+
+Good enough performance
+
+### Good DX
+
+1. Central store composed of slices of related sub stores. Something like: <br />
+const rootStore = {
+    todos: todoStore
+    auth: authStore
+    profile: profileStore
+}
+
+2. Not too much boilerplate
+
+3. One custom hook to consume each sub store's state and actions to modify state in components.

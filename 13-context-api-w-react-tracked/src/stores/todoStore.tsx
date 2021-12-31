@@ -1,8 +1,9 @@
 import { v4 } from "uuid"
-import { useState, createContext, useContext, ReactNode } from "react"
+import { useState } from "react"
+import { createContainer } from "react-tracked"
 
 export type { Todo }
-export { useTodos, TodoProvider, useTodoContext }
+export { useTodos }
 
 type Todo = {
   id: string
@@ -35,8 +36,13 @@ const toggleTodo = (todos: ReadonlyArray<Todo>, id: string): ReadonlyArray<Todo>
   }))
 
 // State management using context api
-const useTodos = (initial: ReadonlyArray<Todo> = []) => {
-  const [todos, setTodos] = useState(initial)
+const initial: ReadonlyArray<Todo> = []
+const useTodoValue = () => useState<ReadonlyArray<Todo>>(initial)
+
+export const { Provider, useTracked } = createContainer(useTodoValue)
+
+const useTodos = () => {
+  const [todos, setTodos] = useTracked()
 
   return {
     // State
@@ -53,16 +59,4 @@ const useTodos = (initial: ReadonlyArray<Todo> = []) => {
         return [...prev, ...loadedTodos.filter((t) => !prevTodoIds.includes(t.id))]
       }) // async action
   }
-}
-
-const TodoContext = createContext<ReturnType<typeof useTodos> | null>(null)
-
-const TodoProvider = ({ children }: { children: ReactNode }) => {
-  return <TodoContext.Provider value={useTodos([])}>{children}</TodoContext.Provider>
-}
-
-const useTodoContext = () => {
-  const value = useContext(TodoContext)
-  if (value === null) throw new Error("Please add TodoProvider")
-  return value
 }
