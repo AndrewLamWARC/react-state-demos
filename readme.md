@@ -156,11 +156,13 @@ Good enough performance
 ### Good DX
 
 1. Central store composed of slices of related sub stores. Something like: <br />
+```
 const rootStore = {
     todos: todoStore
     auth: authStore
     profile: profileStore
 }
+```
 
 2. Not too much boilerplate
 
