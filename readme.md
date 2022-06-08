@@ -111,7 +111,7 @@ TodoListItems maps over the current list of todos and creates an array of TodoIt
 TodoItem is a component that displays the text and done state of it's todo. The todo text is represented by a textbox that can be edited. Each character changed is dispatched to the todo store using actions in libraries implementing the flux architecture which in turn changes the todo in the store to the next state.
 The todo done state is represented by a checkbox is used to show the done state and toggle the todo done state between done and notDone.
 
-TodoItemNew is a component contains a textbox and add button to represent a new todo to be added to the store. Each character changed is saved into local state using useState. The add button is used to dispatch the locally saved text of the new todo to the store.
+The TodoItemNew component contains a textbox and add button to represent a new todo to be added to the store. Each character changed is saved into local state using useState. The add button is used to dispatch the locally saved text of the new todo to the store.
 
 ### Weaknesses
 
