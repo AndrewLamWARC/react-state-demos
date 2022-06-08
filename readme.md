@@ -120,7 +120,7 @@ In a production system, the state of the todos would be stored centrally (single
 For production system, the initial load should load the state of the todos from the remote store on the backend.
 Every action on the frontend should eventually be commited to the remote store.
 
-If the state of the remote todo store can only be changed by user gestures on the frontend then there is no need to load all todos from the remote store after the initial load. However, imagine a bulk job that runs on the backend to delete "old" todos, say todos 1 week or older. Then the frontend would need to have a strategy ensure consistency between the state in the remote store and the global store that lives in the frontend. Obviously we need to keep more state in the stores such as todo create date when we start talking about the age of a todo.
+If the state of the remote todo store can only be changed by user gestures on the frontend then there is no need to load all todos from the remote store after the initial load. However, imagine a bulk job that runs on the backend to delete "old" todos, say todos 1 week or older. Then the frontend would need to have a strategy ensure consistency between the state in the remote store and the global store that lives in the frontend. Obviously we then need to keep more state in the stores such as todo create date when we start talking about the age of a todo.
 
 It should be clear that adding these domain requirements to the demos would add complexity. Which in turn would obscure the understanding of state management libraries. Thus, features have intentianally been left out.
 
