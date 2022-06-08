@@ -25,7 +25,7 @@ React was complemented by a data/state management framwork called flux to form a
 
 So right from the start, there was already a separation between the UI and state part of the equation.
 
-While react has gone on to dominate the UI space, flux has been supplanted by redux. Redux itself has been 'officially' supplanted by either context api with hooks or redux toolkit/RTK.
+While react has gone on to dominate the UI space, flux has been supplanted by redux in the state management space. Redux itself has been 'officially' supplanted by either context api with hooks or redux toolkit/RTK.
 
 As the years has passed, the number of libraries to manage state has exploded. A search for "state management" on npmjs.com returns 2698 results as of 28/12/2021.
 While a tiny percentage of these are libraries specific for managing forms and thus not state management libraries, it is still a tremendous number of libraries.
