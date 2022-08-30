@@ -25,7 +25,7 @@ Redux has a single dispatcher, store and provider.
 Actions are used to mutate state. These are defined as js objects with a string type and optional payload.
 A common pattern in redux is to write "Action creators" to ease the creation of action. These are functions that accept an optional payload value and return a specific action.  
 
-These actions are dispatched by the central dispatcher to the reducer(s). The cetral dispatcher is commonly called "dispatch".
+These actions are dispatched by the central dispatcher to the reducer(s). The central dispatcher is commonly called "dispatch".
 
 A reducer is a pure function that accepts the current state and action as input and produces the next state. It is important that the reducer is pure, defined as not directly mutating the existing state but rather creating and returning the next state.
 A big switch case is used to implement reducers to process next state based on the action dispatched to it.
