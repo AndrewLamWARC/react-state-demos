@@ -1,0 +1,19 @@
+/** Customizations for a better demo */
+html {
+  font-size: 16px;
+  padding: 1rem;
+}
+
+.row {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.row > * + * {
+  margin-left: 1rem;
+}
+
+.app > * + * {
+  margin-top: 1rem;
+}
