@@ -1,14 +1,14 @@
 import { v4 } from "uuid"
 import { proxy, useSnapshot } from "valtio"
 
-// 1. Define shape of the state
+// Define shape of individual state
 export type Todo = {
   id: string
   text: string
   done: boolean
 }
 
-//--- State management with valtio
+// Define shape of store including state and actions that mutate state
 type TodoStoreType = {
   todos: Todo[]
   addTodo: (text: string) => void
@@ -18,6 +18,7 @@ type TodoStoreType = {
   loadTodos: () => void
 }
 
+// Implement the state store
 export const todoStore: TodoStoreType = proxy<TodoStoreType>({
   todos: [],
   addTodo: (text: string) => todoStore.todos.push({ id: v4(), text: text, done: false }),
@@ -33,6 +34,7 @@ export const todoStore: TodoStoreType = proxy<TodoStoreType>({
   loadTodos: () => loadTodos(todoStore)
 })
 
+// Async action that mutate state
 const loadTodos = async (todoStore: TodoStoreType) => {
   console.log("Loading todos. Demo valtio with async")
   const resp = await fetch(

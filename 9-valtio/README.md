@@ -17,6 +17,8 @@ Such that mutating the returned proxy would cause it to publish changes to subsc
 These subscribers subscribes to a local snapshot that publishes changes.
 Rule of thumb, mutate the proxy directly and read from snapshots.
 
+Valtio supports react Suspense out of the box!
+
 ## Component hierarchy
 
     App <- Navbar

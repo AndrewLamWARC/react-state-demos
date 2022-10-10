@@ -3,7 +3,7 @@ import { IdeaProps } from "./Idea"
 
 // Pro: Reusable business logic
 // Con: Can only call hooks from top level. No conditionals, loops or nested functions
-// Meaning we cann not dynamically create hooks at callsite (App in this case)
+// Meaning we cannot dynamically create more hooks at callsite (App in this case)
 export const useIdea = (): IdeaProps => {
   const [value, setValue] = useState("")
   const [upVotes, setUpVotes] = useState(0)

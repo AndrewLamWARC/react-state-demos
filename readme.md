@@ -27,7 +27,7 @@ So right from the start, there was already a separation between the UI and state
 
 While react has gone on to dominate the UI space, flux has been supplanted by redux in the state management space. Redux itself has been 'officially' supplanted by either context api with hooks or redux toolkit/RTK.
 
-As the years has passed, the number of libraries to manage state has exploded. A search for "state management" on npmjs.com returns 2698 results as of 28/12/2021.
+As the years has passed, the number of libraries to manage react state has exploded. A search for "state management" on npmjs.com returns 2698 results as of 28/12/2021.
 While a tiny percentage of these are libraries specific for managing forms and thus not state management libraries, that is still a tremendous number of state management libraries.
 
 This repo is an attempt to review the state of state management libraries as of nearly 2022.
@@ -50,13 +50,14 @@ These are the features I will initially implement in the todo app.
 
 5. Load a list of todos asynchrously and remotely.
 
-Many state libraries treat async tasks differently from sync tasks. For redux, the redux-thunk library is normally used to help process async tasks. Other libraries like redux-saga to handle async task. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy, integrates redux-thunk and there is no need for a separate install of redux-thunk - unlike "classic" redux.
+Many state libraries treat async tasks differently from sync tasks. For redux, the redux-thunk library is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy, integrates redux-thunk and there is no need for a separate install of redux-thunk - unlike "classic" redux.
 
 Some libraries like mobx and zustand can handle async tasks without any need for external libraries.
 
 Async actions, state libraries like redux normally cannot handle async actions alone. An additional library like react-thunk is needed to handle async actions.
 
-State libraries can be classified between provider based and non-provider based. Provider based libraries frequently result in pyramid of a doom provider component tree. Needless to say, I prefer provider-less libraries, however the most common state management libraries are provider based.
+State libraries can be classified between provider based and non-provider based. Provider based libraries frequently result in pyramid of a doom provider component tree.
+Needless to say, I prefer provider-less libraries, however the most common state management libraries are provider based.
 
 ## Demos
 
@@ -83,6 +84,8 @@ State libraries can be classified between provider based and non-provider based.
 - [x] easy-peasy - redux wrapper
 
 - [x] elf
+
+- [x] rxjs
 
 - [ ] Context api with hooks and react-tracked to reduce re-renders and improve preformance when unrelated state changes
 
@@ -156,6 +159,7 @@ Good enough performance
 ### Good DX
 
 1. Central store composed of slices of related sub stores. Something like: <br />
+
 ```
 const rootStore = {
     todos: todoStore
@@ -166,4 +170,4 @@ const rootStore = {
 
 2. Not too much boilerplate
 
-3. One custom hook to consume each sub store's state and actions to modify state in components.
+3. One custom hook to consume each sub store's state and actions to modify state in components. The disadvantage of hooks is that they cannot be created conditionally or in loops. Keep this in mind.

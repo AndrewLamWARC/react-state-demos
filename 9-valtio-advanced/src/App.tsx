@@ -2,7 +2,8 @@ import { Idea } from "./reusable/Idea"
 // import { useIdea } from "./reusable/ideaHook"
 import { useSnapshot } from "valtio"
 // import { createIdeaStore } from "./reusable/ideaState"
-import { ideasStore } from "./reusable/ideasState"
+import { IdeasContext, ideasStore } from "./reusable/ideasState"
+import { useContext } from "react"
 // Stores can live above App
 // const ideaOne = createIdeaStore()
 // const ideaTwo = createIdeaStore()
@@ -16,6 +17,9 @@ function App() {
 
   const snapshot = useSnapshot(ideasStore)
 
+  // Example of how to use valtio with context
+  // const state = useContext(IdeasContext)
+  // const snapshot = useSnapshot(state)
   return (
     <div className="app">
       {/* <Idea {...ideaOne} />
@@ -25,7 +29,10 @@ function App() {
       */}
 
       <div className="row">
+        {/* dynamically add more 'ideas' */}
         <button onClick={() => snapshot.addIdea()}>➕</button>
+
+        {/* dynamically delete 'ideas' */}
         <button onClick={() => snapshot.deleteIdea()}>➖</button>
       </div>
 

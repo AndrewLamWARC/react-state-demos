@@ -2,6 +2,6 @@
 
 Proxies and snapshot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## CRA with typescript - eslint and prettier configured
+
+## React 18

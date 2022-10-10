@@ -12,7 +12,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
     "react-scripts": "^5.0.1",
-    "rxjs": "^7.5.7",
     "ts-jest": "^29.0.2",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"
