@@ -1,13 +1,13 @@
 import { Button, Input, Grid } from "@chakra-ui/react"
 import { AddIcon } from "@chakra-ui/icons"
 import { useState } from "react"
-import { todoState } from "../stores/todoStore"
+import { todosState } from "../stores/todoStore"
 import { useSetRecoilState } from "recoil"
 import { v4 } from "uuid"
 
 const TodoItemNew = () => {
   const [newText, setNewText] = useState("")
-  const setTodos = useSetRecoilState(todoState)
+  const setTodos = useSetRecoilState(todosState)
 
   const onAddNewTodo = () => {
     setTodos((todos) => [...todos, { id: v4(), text: newText, done: false }])

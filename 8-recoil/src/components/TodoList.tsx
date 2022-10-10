@@ -1,10 +1,10 @@
 import { Heading } from "@chakra-ui/react"
-import { Todo, todoState } from "../stores/todoStore"
+import { Todo, todosState } from "../stores/todoStore"
 import { TodoItem } from "./TodoItem"
 import { useRecoilValue } from "recoil"
 
 const TodoListItems = () => {
-  const todos = useRecoilValue(todoState)
+  const todos = useRecoilValue(todosState)
 
   return (
     <>

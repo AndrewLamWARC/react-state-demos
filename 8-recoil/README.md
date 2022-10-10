@@ -19,6 +19,8 @@ Like apps used for visualization
 
 Think of atoms as enabling getter and setters of reactive values in global state.
 
+Recoil 0.7.5 supports react Suspense. To test, open devtools, network tab and throttle speed to 3G slow. Then load the todo list remotely by pressing Load button - expect to see "Loading..." fallback message
+
 ## Component hierarchy
 
     App <- Navbar
@@ -31,5 +33,5 @@ Another provider based state management system. I think RecoilRoot is the provid
 
 ## Todo
 
-Isolate business logic in todoStore. Right now logic is spread i=out in various component.
+Isolate business logic in todoStore. Right now logic is spread out in various component.
 Write custom hooks to achieve aim

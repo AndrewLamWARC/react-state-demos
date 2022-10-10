@@ -7,10 +7,9 @@ export type Todo = {
   done: boolean
 }
 
-//--- State management with Recoil
 // Define the atoms of state
-export const todoState = atom<Todo[]>({
-  key: "todoState",
+export const todosState = atom<Todo[]>({
+  key: "todosState",
   default: []
 })
 

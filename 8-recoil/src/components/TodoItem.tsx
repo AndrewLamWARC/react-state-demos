@@ -1,6 +1,6 @@
 import { Input, Checkbox, Button, Flex } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
-import { Todo, todoState, todoDoneState, todoTextState } from "../stores/todoStore"
+import { Todo, todosState, todoDoneState, todoTextState } from "../stores/todoStore"
 import { useSetRecoilState } from "recoil"
 
 type TodoItemProps = {
@@ -8,7 +8,7 @@ type TodoItemProps = {
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
-  const setTodos = useSetRecoilState(todoState)
+  const setTodos = useSetRecoilState(todosState)
 
   const onToggle = () => {
     setTodos((todos) => todos.map((t) => ({ ...t, done: t.id === todo.id ? !t.done : t.done })))

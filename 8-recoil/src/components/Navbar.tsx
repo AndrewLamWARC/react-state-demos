@@ -1,10 +1,10 @@
 import { Button, Grid } from "@chakra-ui/react"
 import { ThemeSwitcher } from "./ThemeSwitcher"
 import { useRecoilValue, useSetRecoilState } from "recoil"
-import { todoRemoteState, todoState } from "../stores/todoStore"
+import { todoRemoteState, todosState } from "../stores/todoStore"
 
 const Navbar = () => {
-  const setTodos = useSetRecoilState(todoState)
+  const setTodos = useSetRecoilState(todosState)
   const todos = useRecoilValue(todoRemoteState)
 
   const onLoad = () => {
