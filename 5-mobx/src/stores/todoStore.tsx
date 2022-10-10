@@ -2,6 +2,7 @@ import { v4 } from "uuid"
 import { makeAutoObservable, runInAction } from "mobx"
 import { createContext, ReactNode, useContext } from "react"
 
+// Represents 1 todo item. Class based mobx observable
 export class Todo {
   id = ""
   text = ""
@@ -30,7 +31,7 @@ export class Todo {
   }
 }
 
-// Async actions handled using react-thunk
+// Async actions
 export const loadTodos = async () => {
   const resp = await fetch(
     "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45bd8eb45d10aabc76f30/raw/todos.json"
@@ -41,7 +42,6 @@ export const loadTodos = async () => {
 }
 
 //--- State management using mobx
-
 export type TodoListStoreType = {
   todos: Todo[]
   addTodo: (newTodo: string) => void
@@ -52,6 +52,7 @@ export type TodoListStoreType = {
   updateTodoFromRemote: (json: Todo) => void
 }
 
+// Represents a list of todo items as well as the actions that affect state on todos. Function based mobx observable
 const TodoListStore: TodoListStoreType = makeAutoObservable({
   todos: [],
 
@@ -82,18 +83,20 @@ const TodoListStore: TodoListStoreType = makeAutoObservable({
     if (!todo) {
       todo = new Todo(json.id)
       TodoListStore.todos.push(todo)
-      todo.fromJson(json)
+      todo.fromJson(json) // update the state on current todo from remote json of todo
     }
   }
 })
 
 export { TodoListStore as TodoStore }
 
+// We can add other slices of state into the RootStore
 export const RootStore = {
   todoListStore: TodoListStore,
   todo: Todo
 }
 
+// No need to use ContextApi with mobx but here to demostrate it is possible
 export const StoreContext = createContext(RootStore)
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {

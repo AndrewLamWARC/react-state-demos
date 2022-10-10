@@ -3,7 +3,7 @@ import { Suspense, useLayoutEffect } from "react"
 import { Navbar } from "./components/Navbar"
 import { TodoItemNew } from "./components/TodoItemNew"
 import { TodoList } from "./components/TodoList"
-import { StoreProvider, useStoreContext } from "./stores/todoStore"
+import { StoreProvider } from "./stores/todoStore"
 import { observer } from "mobx-react-lite"
 
 const App = () => {
