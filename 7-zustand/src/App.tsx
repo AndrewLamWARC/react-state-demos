@@ -3,7 +3,6 @@ import { Suspense, useLayoutEffect } from "react"
 import { Navbar } from "./components/Navbar"
 import { TodoItemNew } from "./components/TodoItemNew"
 import { TodoList } from "./components/TodoList"
-import { useStore } from "./stores/todoStore"
 
 const App = () => {
   return (
@@ -21,7 +20,6 @@ const App = () => {
 }
 
 const LogEvents = () => {
-  const todos = useStore((state) => state.todos)
   useLayoutEffect(() => {
     console.log("Commit phase - asynchronous")
   })

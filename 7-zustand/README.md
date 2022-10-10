@@ -18,7 +18,7 @@ Devs have different interpretation of simple.
 So I say stores written with zustand results in code that is smaller, tighter and easier to reason about.
 
 This is the first state management library that is **not** provider based.
-Provider based state libraries tend to result in the triangle of doom jsx code.
+Provider based state libraries tend to result in the pyramid of doom jsx code.
 
 Imagine a system that need stores for Auth, Profile, Theme, and the rest of the domain's system.
 Each store requires it's own provider and will result in an additional level of nesting.

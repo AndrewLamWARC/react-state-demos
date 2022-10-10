@@ -1,13 +1,24 @@
 import create from "zustand"
 import { v4 } from "uuid"
 
-// 1. Define shape of the state
+// Define shape of the state
 export type Todo = {
   id: string
   text: string
   done: boolean
 }
 
+// Define the store that holds the state and actions
+type TodoStore = {
+  todos: Todo[]
+  addTodo: (text: string) => void
+  deleteTodo: (id: string) => void
+  updateTodo: (id: string, text: string) => void
+  toggleTodo: (id: string) => void
+  loadTodos: () => void
+}
+
+// Implementations of each action
 const addTodo = (todos: Todo[], text: string): Todo[] => [
   ...todos,
   {
@@ -31,18 +42,17 @@ const toggleTodo = (todos: Todo[], id: string): Todo[] =>
     done: todo.id === id ? !todo.done : todo.done
   }))
 
-//--- State management using redux toolkit
-
-type TodoStore = {
-  todos: Todo[]
-  addTodo: (text: string) => void
-  deleteTodo: (id: string) => void
-  updateTodo: (id: string, text: string) => void
-  toggleTodo: (id: string) => void
-  loadTodos: () => void
+// Async actions handled using react-thunk
+export const loadTodos = async () => {
+  console.log("Loading todos")
+  const resp = await fetch(
+    "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45bd8eb45d10aabc76f30/raw/todos.json"
+  )
+  const todos: Todo[] = await resp.json()
+  return todos
 }
 
-// 2. Create store and hook for consuming store
+// Create hook and implement store
 const useStoreFactory = (initial: Todo[] = []) =>
   create<TodoStore>((set) => ({
     todos: initial,
@@ -69,14 +79,5 @@ const useStoreFactory = (initial: Todo[] = []) =>
       })
   }))
 
-// Async actions handled using react-thunk
-export const loadTodos = async () => {
-  console.log("Loading todos")
-  const resp = await fetch(
-    "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45bd8eb45d10aabc76f30/raw/todos.json"
-  )
-  const todos: Todo[] = await resp.json()
-  return todos
-}
-
+// Expose hook
 export const useStore = useStoreFactory([])
