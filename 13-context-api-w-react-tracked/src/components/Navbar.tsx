@@ -14,6 +14,7 @@ const Navbar = () => {
     const todos = await resp.json()
 
     loadTodos(todos)
+    console.log("Loaded todos", todos)
   }
   return (
     <Grid pt={2} templateColumns="1fr 1fr" columnGap="3">

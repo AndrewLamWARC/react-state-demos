@@ -7,6 +7,7 @@ const todosUrl = "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45
 export const fetchTodos = () => {
   return fromFetch<Todo[]>(todosUrl, {
     selector: (response) => {
+      console.log("fetchTodos")
       const todos = response.json()
       return todos
     }

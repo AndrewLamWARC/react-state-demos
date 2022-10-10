@@ -87,7 +87,7 @@ Needless to say, I prefer provider-less libraries, however the most common state
 
 - [x] rxjs
 
-- [ ] Context api with hooks and react-tracked to reduce re-renders and improve preformance when unrelated state changes
+- [x] Context api with hooks and react-tracked to reduce re-renders and improve preformance when unrelated state changes
 
 - [ ] xstate
 

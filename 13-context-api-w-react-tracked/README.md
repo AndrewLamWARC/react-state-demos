@@ -1,13 +1,12 @@
-# Basic react state management using context api with react-tracked
+# Basic react state management using context api with **react-tracked**
 
-<https://reactjs.org/docs/context.html>
+<https://github.com/dai-shi/react-tracked>
 
-Tagline: React global state management with built in functionality.
-State usage tracking with Proxies. Optimize re-renders for useState/useReducer, Redux, Zustand and others.
+Tagline: State usage tracking with Proxies. Optimize re-renders for useState/useReducer, Redux, Zustand and others.
 
-Weekly npm downloads: N/A
+Weekly npm downloads: 30,921
 
-Github stars: N/A
+Github stars: 2.1k
 
 Basic todo app with "global" state using react built-in context api
 

@@ -9,9 +9,8 @@ const Navbar = () => {
   const [load, setLoad] = useState<() => Observable<Todo[]>>()
 
   useEffect(() => {
-    let s: Subscription
     if (load) {
-      s = load().subscribe()
+      const s = load().subscribe(console.log)
 
       return () => s.unsubscribe()
     }
