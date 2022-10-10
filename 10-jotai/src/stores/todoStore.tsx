@@ -2,7 +2,7 @@ import { atom } from "jotai"
 import { v4 } from "uuid"
 
 export type { Todo }
-export { todoState, addTodoAtom, updateTodoAtom, deleteTodoAtom, toggleTodoAtom, loadTodosAtom }
+export { todoState, asyncTodoState, addTodoAtom, updateTodoAtom, deleteTodoAtom, toggleTodoAtom, loadTodosAtom }
 
 type Todo = {
   id: string
@@ -12,6 +12,10 @@ type Todo = {
 
 //--- State management with jotai
 const todoState = atom<Todo[]>([])
+const asyncTodoState = atom(async (get) => {
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+  return get(todoState)
+})
 
 const addTodoAtom = atom(
   (get) => get(todoState),
@@ -45,6 +49,7 @@ const toggleTodoAtom = atom(
     )
 )
 
+// Async write atom does not seem to work nicely with Suspense
 const loadTodosAtom = atom(null, async (get, set) => set(todoState, await loadTodosRemote(get(todoState))))
 
 const loadTodosRemote = async (prevTodos: Todo[]) => {

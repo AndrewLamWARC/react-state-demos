@@ -1,11 +1,11 @@
 import { Heading } from "@chakra-ui/react"
 import { Todo } from "../stores/todoStore"
-import { todoState } from "../stores/todoStore"
+import { asyncTodoState } from "../stores/todoStore"
 import { useAtom } from "jotai"
 import { TodoItem } from "./TodoItem"
 
 const TodoListItems = () => {
-  const [todos] = useAtom(todoState)
+  const [todos] = useAtom(asyncTodoState)
 
   return (
     <>
