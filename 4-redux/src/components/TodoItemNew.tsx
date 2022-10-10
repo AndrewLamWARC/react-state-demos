@@ -1,13 +1,13 @@
 import { Button, Input, Grid } from "@chakra-ui/react"
 import { AddIcon } from "@chakra-ui/icons"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
 import { addTodo } from "../stores/store"
+import { useAppDispatch } from "../hooks/useAppState"
 
 const TodoItemNew = () => {
   const [newTodo, setNewTodo] = useState("")
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onAddNewTodo = () => {
     dispatch(addTodo(newTodo))

@@ -37,7 +37,7 @@ Component instances consume classic redux state by connecting to redux store usi
 These properties can be both state and action creators.
 
 I've cheated here and used hooks to improve the DX of using classic redux.
-Specifically, I've used the useDispatch and useReducer hooks.
+Specifically, I've used the useDispatch(useAppDispatch) and useSelector(useAppSelector) hooks.
 Using these hooks eases consuming redux state from the components.
 
 ## Component hierarchy

@@ -1,10 +1,10 @@
 import { Heading } from "@chakra-ui/react"
 import { RootStore, Todo } from "../stores/store"
-import { useSelector } from "react-redux"
 import { TodoItem } from "./TodoItem"
+import { useAppSelector } from "../hooks/useAppState"
 
 const TodoListItems = () => {
-  const todos = useSelector((state: RootStore) => state.todo)
+  const todos = useAppSelector((state: RootStore) => state.todo)
 
   return (
     <>

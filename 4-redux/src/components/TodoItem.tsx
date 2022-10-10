@@ -1,13 +1,13 @@
-import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react"
+import { Button, Input, Flex, Checkbox } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
 import { Todo, deleteTodo, toggleTodo, updateTodo } from "../stores/store"
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from "../hooks/useAppState"
 
 type TodoItemProps = {
   todo: Todo
 }
 const TodoItem = ({ todo }: TodoItemProps) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   return (
     <Flex pt={2} key={todo.id}>

@@ -112,3 +112,4 @@ export const loadTodos: ActionCreator<LoadTodoAction> = (todos: Todo[]) => {
 
 export const rootReducer = combineReducers<RootStore>({ todo: todoReducer })
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+export type RootState = ReturnType<typeof store.getState>
