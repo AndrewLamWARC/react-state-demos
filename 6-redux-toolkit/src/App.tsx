@@ -4,8 +4,7 @@ import { Navbar } from "./components/Navbar"
 import { TodoItemNew } from "./components/TodoItemNew"
 import { TodoList } from "./components/TodoList"
 import { Provider } from "react-redux"
-import { RootState, rootStore } from "./stores/rootStore"
-import { useAppSelector } from "./hooks/useAppState"
+import { rootStore } from "./stores/rootStore"
 
 const App = () => {
   return (
@@ -25,7 +24,6 @@ const App = () => {
 }
 
 const LogEvents = () => {
-  const todos = useAppSelector((state: RootState) => state.todos)
   useLayoutEffect(() => {
     console.log("Commit")
   })

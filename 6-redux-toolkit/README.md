@@ -17,9 +17,9 @@ Actions are created with action creators and dispatched with a central dispatche
 With redux, there is one central store. Later, this central store idea is refined by RTK and split up into various composed slices of state
 
 Each component that need state consumes reactive state from the central state via selectors.
-Each component that mutate state using actions dispatched to the central dispatcher.
+Each component that mutate state uses actions dispatched to the central dispatcher.
 
-However, classic redux has fallen out of favour for 3 reasons.
+RTK addressed the 3 reasons given for classic redux has fallen out of favour.
 
 1. Configuration of redux store is too complex
 

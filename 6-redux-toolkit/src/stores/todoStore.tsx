@@ -46,7 +46,7 @@ export const todoSlice = (initial: Todo[] = []) =>
       deleteTodo: (state, action: PayloadAction<Pick<Todo, "id">>) => deleteTodo(state, action.payload.id)
     },
 
-    // Async actions that mutate state
+    // Async actions that mutate state. This is still a bit wierd if you ask me. extraReducers means nothing to newcomers
     extraReducers: (builder) => {
       builder.addCase(loadTodos.fulfilled, (state, { payload }) => {
         const prevTodoIds = state.map((t) => t.id)
