@@ -1,9 +1,9 @@
 import { Heading } from "@chakra-ui/react"
-import { deleteTodoType, todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
+import { deleteTodoType, Todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
 import { TodoItem } from "./TodoItem"
 
 type TodoListItemsProps = {
-  todos: todo[]
+  todos: Todo[]
   toggleTodo: toggleTodoType
   updateTodo: updateTodoType
   deleteTodo: deleteTodoType
@@ -12,7 +12,7 @@ type TodoListItemsProps = {
 const TodoListItems = ({ todos, toggleTodo, updateTodo, deleteTodo }: TodoListItemsProps) => {
   return (
     <>
-      {todos.map((todo: todo) => (
+      {todos.map((todo: Todo) => (
         <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} updateTodo={updateTodo} deleteTodo={deleteTodo} />
       ))}
     </>
@@ -20,7 +20,7 @@ const TodoListItems = ({ todos, toggleTodo, updateTodo, deleteTodo }: TodoListIt
 }
 
 type TodoListProps = {
-  todos: todo[]
+  todos: Todo[]
   toggleTodo: toggleTodoType
   updateTodo: updateTodoType
   deleteTodo: deleteTodoType

@@ -1,9 +1,9 @@
 import { Button, Grid } from "@chakra-ui/react"
-import { todo } from "../stores/todoStore"
+import { Todo } from "../stores/todoStore"
 import { ThemeSwitcher } from "./ThemeSwitcher"
 
 type NavbarProps = {
-  load: (todos: todo[]) => void
+  load: (todos: Todo[]) => void
 }
 const Navbar = ({ load }: NavbarProps) => {
   const onLoad = async () => {

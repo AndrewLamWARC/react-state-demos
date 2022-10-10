@@ -3,15 +3,17 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@chakra-ui/icons": "^1.1.1",
-        "@chakra-ui/react": "^1.7.3",
-        "@emotion/react": "^11.7.1",
-        "@emotion/styled": "^11.6.0",
-        "framer-motion": "^5.5.5",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
+        "@chakra-ui/icons": "^2.0.11",
+        "@chakra-ui/react": "^2.0.0",
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "framer-motion": "7.5.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "react-icons": "^4.3.1",
-        "react-scripts": "5.0.0",
+        "react-scripts": "^5.0.1",
+        "ts-jest": "^29.0.2",
+        "uuid": "^8.3.2",
         "web-vitals": "^2.1.2"
     },
     "scripts": {
@@ -33,21 +35,22 @@
         ]
     },
     "devDependencies": {
-        "@testing-library/jest-dom": "^5.16.1",
-        "@testing-library/react": "^12.1.2",
+        "@types/uuid": "^8.3.3",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^12.1.5",
         "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.0.3",
-        "@types/node": "^16.11.14",
-        "@types/react": "^17.0.37",
-        "@types/react-dom": "^17.0.11",
-        "@typescript-eslint/eslint-plugin": "^5.7.0",
-        "@typescript-eslint/parser": "^5.7.0",
-        "eslint": "^8.5.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-react": "^7.27.1",
-        "prettier": "^2.5.1",
-        "typescript": "^4.5.4"
+        "@types/jest": "^29.0.3",
+        "@types/node": "^18.7.20",
+        "@types/react": "^18.0.21",
+        "@types/react-dom": "^18.0.6",
+        "@typescript-eslint/eslint-plugin": "^5.38.0",
+        "@typescript-eslint/parser": "^5.38.0",
+        "eslint": "^8.24.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.8",
+        "prettier": "^2.7.1",
+        "typescript": "^4.8.3"
     },
     "eslintConfig": {
         "root": true,
@@ -82,5 +85,15 @@
                 "version": "detect"
             }
         }
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "testEnvironment": "node",
+        "transform": {
+            "^.+\\.[t|j]sx?$": "ts-jest"
+        },
+        "transformIgnorePatterns": [
+            "<rootDir>/node_modules/"
+        ]
     }
 }

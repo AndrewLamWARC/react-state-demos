@@ -1,11 +1,11 @@
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
-import { deleteTodoType, todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
+import { deleteTodoType, Todo, toggleTodoType, updateTodoType } from "../stores/todoStore"
 
 export { TodoItem }
 
 type TodoItemProps = {
-  todo: todo
+  todo: Todo
   toggleTodo: toggleTodoType
   updateTodo: updateTodoType
   deleteTodo: deleteTodoType
