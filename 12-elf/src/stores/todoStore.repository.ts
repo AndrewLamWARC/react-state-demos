@@ -7,7 +7,12 @@ import {
   deleteEntities,
   selectAllApply
 } from "@ngneat/elf-entities"
-import { withRequestsStatus, updateRequestStatus, createRequestsStatusOperator } from "@ngneat/elf-requests"
+import {
+  withRequestsStatus,
+  updateRequestStatus,
+  createRequestsStatusOperator,
+  initializeAsPending
+} from "@ngneat/elf-requests"
 import { switchMap } from "rxjs/operators"
 import { v4 } from "uuid"
 
@@ -25,7 +30,7 @@ const { state, config } = createState(
   withProps<TodosProps>({ filter: "ALL" }),
   withEntities<Todo>(),
   // You can pass the keys type
-  withRequestsStatus<"todos" | `todos-${string}`>()
+  withRequestsStatus<"todos" | `todo-${string}`>(initializeAsPending("todos"))
 )
 
 const store = new Store({ name: "todos", state, config })
@@ -53,8 +58,8 @@ export const updateTodosFilter = (filter: TodosProps["filter"]) => {
 }
 
 export const loadTodos = (todos: Todo[]) => {
-  store.update(setEntities(todos))
-  updateRequestStatus("todos", "success")
+  store.update(setEntities(todos), updateRequestStatus("todos", "success"))
+  console.log(todos)
 }
 
 export const addTodo = (text: Todo["text"]) => {

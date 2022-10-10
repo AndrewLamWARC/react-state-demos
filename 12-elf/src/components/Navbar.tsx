@@ -12,14 +12,17 @@ const Navbar = () => {
     let s: Subscription
     if (load) {
       s = load().subscribe()
+
       return () => s.unsubscribe()
     }
   }, [load])
 
   const onLoad = () => {
-    console.log("onLoad called")
+    console.log("Calling onLoad")
     setLoad(() => fetchTodos)
+    console.log("Called onLoad")
   }
+
   return (
     <Grid pt={2} templateColumns="1fr 1fr" columnGap="3">
       <ThemeSwitcher />

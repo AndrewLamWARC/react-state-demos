@@ -19,6 +19,8 @@ rxjs itself has a learning curve so Elf may not be suitable for a dev team that 
 
 To understand the overall concepts behind reactive programming and functional programming, I urge you to look up Erik Miejer's articles and videos on the subject. He was the principal behind LINQ and reactive extensions (rx.net) on which rxjs is based.
 
+Known bug: you can only load the Todos from the server one time.
+
 ## Component hierarchy
 
     App <- Navbar
