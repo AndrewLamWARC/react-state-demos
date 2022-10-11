@@ -8,7 +8,7 @@ Weekly npm downloads: 4,931,043
 
 Github stars: 57,200
 
-Todo app with "global" state using redux in the classic way
+Todo app with "global" state using redux in the classic way.
 Redux is losing popularity because of 3 criticisms with the classic approach.
 
 1. Configuration of redux store is too complex
