@@ -10,7 +10,7 @@ export type Todo = {
   done: boolean
 }
 
-type TodosMachineContext = {
+export type TodosMachineContext = {
   todos: Todo[]
   newTodoText: string
 }
@@ -48,6 +48,9 @@ const createTodo = (text: string): Todo => {
 
 export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
   {
+    // Boilerplate https://xstate.js.org/docs/guides/actions.html
+    predictableActionArguments: true,
+
     // machine id
     id: "todos",
 
@@ -67,7 +70,7 @@ export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
           updateTodo: {
             actions: assign({
               todos: (context, event) => {
-                console.log("updating todo ", event.id)
+                console.log("updating todo", event.id)
                 return updateTodo(context.todos, event.id, event.text)
               }
             })
@@ -75,14 +78,14 @@ export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
           updateTodoText: {
             actions: assign({
               newTodoText: (_, event) => {
-                console.log("updating todo text ", event.text)
+                console.log("updating todo text", event.text)
                 return event.text
               }
             })
           },
           addTodo: {
             actions: assign((context, event) => {
-              console.log("adding todo ", event.text)
+              console.log("adding todo", event.text)
               return {
                 newTodoText: "",
                 todos: addTodo(context.todos, event.text)
@@ -91,7 +94,7 @@ export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
           },
           toggleTodo: {
             actions: assign((context, event) => {
-              console.log("toggling todo ", event.id)
+              console.log("toggling todo", event.id)
               return {
                 todos: toggleTodo(context.todos, event.id)
               }
@@ -99,7 +102,7 @@ export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
           },
           deleteTodo: {
             actions: assign((context, event) => {
-              console.log("deleting todo ", event.id)
+              console.log("deleting todo", event.id)
               return {
                 todos: deleteTodo(context.todos, event.id)
               }
@@ -140,7 +143,7 @@ export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
   {
     actions: {
       log: (context, _) => {
-        console.log("Enter ready state ", context.todos)
+        console.log("Enter ready state", context.todos)
       }
     }
   }
