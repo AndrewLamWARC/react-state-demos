@@ -10,12 +10,12 @@ export type Todo = {
   done: boolean
 }
 
-type TodoMachineContext = {
+type TodosMachineContext = {
   todos: Todo[]
   newTodoText: string
 }
 
-const todoModel = createModel(
+const todosModel = createModel(
   // initial context
   {
     todos: [] as Todo[],
@@ -36,7 +36,7 @@ const todoModel = createModel(
   }
 )
 
-type TodoEvent = EventFrom<typeof todoModel>
+type TodosEvent = EventFrom<typeof todosModel>
 
 const createTodo = (text: string): Todo => {
   return {
@@ -46,7 +46,7 @@ const createTodo = (text: string): Todo => {
   }
 }
 
-export const todosMachine = createMachine<TodoMachineContext, TodoEvent>(
+export const todosMachine = createMachine<TodosMachineContext, TodosEvent>(
   {
     // machine id
     id: "todos",
@@ -55,64 +55,55 @@ export const todosMachine = createMachine<TodoMachineContext, TodoEvent>(
     initial: "ready",
 
     // local context for entire machine
-    context: todoModel.initialContext,
+    context: todosModel.initialContext,
 
     // state definitions
     states: {
       ready: {
+        // Ready state
         entry: ["log"],
         on: {
-          loadTodosRemote: "loading", // action: state,
+          loadTodosRemote: "loading", // action: state. Ready state transition to loading state
           updateTodo: {
-            actions: [
-              (context, event) => {
+            actions: assign({
+              todos: (context, event) => {
                 console.log("updating todo ", event.id)
-                assign({
-                  todos: updateTodo(context.todos, event.id, event.text)
-                })
+                return updateTodo(context.todos, event.id, event.text)
               }
-            ]
+            })
           },
           updateTodoText: {
-            actions: [
-              (_, event) => {
+            actions: assign({
+              newTodoText: (_, event) => {
                 console.log("updating todo text ", event.text)
-                assign({
-                  newTodoText: event.text
-                })
+                return event.text
               }
-            ]
+            })
           },
           addTodo: {
-            actions: [
-              (context, event) => {
-                console.log("adding todo ", event.text)
-                assign({
-                  newTodoText: "",
-                  todos: addTodo(context.todos, event.text)
-                })
+            actions: assign((context, event) => {
+              console.log("adding todo ", event.text)
+              return {
+                newTodoText: "",
+                todos: addTodo(context.todos, event.text)
               }
-            ]
+            })
           },
           toggleTodo: {
-            actions: [
-              (context, event) => {
-                console.log("toggling todo ", event.id)
-                assign({
-                  todos: toggleTodo(context.todos, event.id)
-                })
+            actions: assign((context, event) => {
+              console.log("toggling todo ", event.id)
+              return {
+                todos: toggleTodo(context.todos, event.id)
               }
-            ]
+            })
           },
           deleteTodo: {
-            actions: [
-              (context, event) => {
-                console.log("deleting todo ", event.id)
-                assign({
-                  todos: deleteTodo(context.todos, event.id)
-                })
+            actions: assign((context, event) => {
+              console.log("deleting todo ", event.id)
+              return {
+                todos: deleteTodo(context.todos, event.id)
               }
-            ]
+            })
           },
           loadTodos: {
             actions: assign({
@@ -122,6 +113,7 @@ export const todosMachine = createMachine<TodoMachineContext, TodoEvent>(
         }
       },
       loading: {
+        // Loading state
         invoke: {
           src: async () => {
             console.log("transition to loading")
@@ -133,13 +125,13 @@ export const todosMachine = createMachine<TodoMachineContext, TodoEvent>(
           },
           onDone: {
             target: "ready",
-            actions: (_, event) => {
+            actions: assign((_, event) => {
               console.log("done loading, assign loaded data and transition to ready")
               console.table(event.data)
-              assign({
+              return {
                 todos: event.data
-              })
-            }
+              }
+            })
           }
         }
       }
