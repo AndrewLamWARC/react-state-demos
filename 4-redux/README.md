@@ -8,7 +8,7 @@ Weekly npm downloads: 4,931,043
 
 Github stars: 57,200
 
-Todo app with "global" state using redux in the classic way
+Todo app with "global" state using redux in the classic way.
 Redux is losing popularity because of 3 criticisms with the classic approach.
 
 1. Configuration of redux store is too complex
@@ -27,8 +27,8 @@ A common pattern in redux is to write "Action creators" to ease the creation of 
 
 These actions are dispatched by the central dispatcher to the reducer(s). The central dispatcher is commonly called "dispatch".
 
-A reducer is a pure function that accepts the current state and action as input and produces the next state. It is important that the reducer is pure, defined as not directly mutating the existing state but rather creating and returning the next state.
-A big switch case is used to implement reducers to process next state based on the action dispatched to it.
+A reducer is a pure function that accepts the current state and action as input and produces the next state. It is important that the reducer is pure, defined to not directly mutate the existing state but rather create and return the next state.
+A big switch case is usually used to implement reducers to process next state based on the action dispatched to it.
 
 The signature of the todo reducer function in typescript is:
 type TodoReducer = (currentState: TodoStore, action: TodoAction) => TodoStore
