@@ -19,10 +19,6 @@ type TodoStoreType = {
 // Strategy with rxjs.
 // Observable array of todo with Subject or BehaviourSubject
 // State kept in parent and updated using setTodos with useState
-// On add todo, .next new todo to observable array
-// On update todo, emit new observable array with updated todo
-// On delete todo, emit new observable array without deleted todo
-// On toggle todo, emit new observable array with updated todo
 
 export const todoStore: TodoStoreType = {
   todos$: new BehaviorSubject<Todo[]>([]),
@@ -54,6 +50,7 @@ const loadTodos = async () => {
     "https://gist.githubusercontent.com/AndrewLamWARC/06226afcc5c45bd8eb45d10aabc76f30/raw/todos.json"
   )
   const todos: Todo[] = await resp.json()
-  const prevTodoIds = todoStore.todos$.getValue().map((t) => t.id)
-  todoStore.todos$.next([...todoStore.todos$.getValue(), ...todos.filter((t) => !prevTodoIds.includes(t.id))])
+  const currentTodos = todoStore.todos$.getValue()
+  const currentTodoIds = currentTodos.map((t) => t.id)
+  todoStore.todos$.next([...currentTodos, ...todos.filter((t) => !currentTodoIds.includes(t.id))])
 }

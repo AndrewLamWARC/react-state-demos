@@ -54,10 +54,10 @@ Many state libraries treat async tasks differently from sync tasks. For redux, t
 
 Some libraries like mobx and zustand can handle async tasks without any need for external libraries.
 
-Async actions, state libraries like redux normally cannot handle async actions alone. An additional library like react-thunk is needed to handle async actions.
+State libraries like redux normally cannot handle **async actions** alone. An additional library like react-thunk is needed to handle async actions.
 
-State libraries can be classified between provider based and non-provider based. Provider based libraries frequently result in pyramid of a doom provider component tree.
-Needless to say, I prefer provider-less libraries, however the most common state management libraries are provider based.
+State libraries can be classified between provider based and non-provider based. Provider based libraries frequently result in pyramid of doom provider component tree.
+I prefer provider-less libraries, however most common state management libraries are provider based.
 
 ## Demos
 
@@ -89,11 +89,11 @@ Needless to say, I prefer provider-less libraries, however the most common state
 
 - [x] Context api with hooks and react-tracked to reduce re-renders and improve preformance when unrelated state changes
 
-- [ ] xstate
+- [x] xstate
 
-- [ ] react-query
+- [ ] react-query - this deals with remote state. Others in the list currently deal with global (non-remote) state so solution would be slightly different
 
-- [ ] Redux toolkit query
+- [ ] Redux toolkit query - this also deals with remote state. Should build upon the RTK solution above
 
 ## Todo app hierarchy
 

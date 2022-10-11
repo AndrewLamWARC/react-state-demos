@@ -2,22 +2,23 @@
 
 Rxjs is not strictly a state management library but ...
 
-<https://valtio-demo.pmnd.rs/>
+<hhttps://rxjs.dev/>
 
-Tagline: 💊 Valtio makes proxy-state simple for React and Vanilla
+Tagline: RxJS: Reactive Extensions For JavaScript
 
-Weekly npm downloads: 8,922
+Weekly npm downloads: N/A
 
-Github stars: 3,400
+Github stars: 27.8k
 
-Todo app with "global" state with valtio.
+Todo app with "global" state with rxjs.
 
-Valtio is authored by Daishi Kato, who is the author of other state management libraries like Zustand (state in German) and Jotai (state in Japanese)
+The todo$ global observable is stored in todoStore.todos$. It is a BehaviourSubject which means it is both an observable and observer.
+Components like TodoListItems **react** to changes to todos$ via a subscription with the useObservable hook on todoStore.todos$. And rerenders.
 
-Valtio turns any object, think store, into a self aware proxy.
-Such that mutating the returned proxy would cause it to publish changes to subscribers.
-These subscribers subscribes to a local snapshot that publishes changes.
-Rule of thumb, mutate the proxy directly and read from snapshots.
+Components that mutate the state of todo$ does so via actions in the todoStore - like addTodo(), updateTodo(), deleteTodo().
+These actions causes a new todo list to be emitted via todos$.next() and causing subscribers of todos$ to rerender.
+
+My implementation is a bit clunky "on change", I get the current todos using todos$.getValue() then change it and push next() value into the observable.
 
 ## Component hierarchy
 
