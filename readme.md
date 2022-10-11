@@ -34,7 +34,7 @@ This repo is an attempt to review the state of state management libraries as of 
 
 ## Ambitions
 
-Build a simple todo react app of just enough complexity to demonstrate the management of state using various libraries but not too complex to obscure the mechanism of each library.
+Build a simple todo react app with just enough complexity to demonstrate the management of state using various libraries but not too complex to obscure the mechanism of each library.
 
 I'm a big fan of learning through concrete examples so feel free to clone this repo and experiment for yourselves. I welcome PRs for refactors and bug fixes as well as PRs that clarify the documentation. PRs for adding new features would be carefully evaluated for usefulness and clarity against complexity.
 
@@ -50,7 +50,7 @@ These are the features I will initially implement in the todo app.
 
 5. Load a list of todos asynchrously and remotely.
 
-Many state libraries treat async tasks differently from sync tasks. For redux, the redux-thunk library is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy, integrates redux-thunk and there is no need for a separate install of redux-thunk - unlike "classic" redux.
+Many state libraries treat async tasks differently from sync tasks. For redux, redux-thunk is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy already integrates redux-thunk and there is no need for a separate install of redux-thunk.
 
 Some libraries like mobx and zustand can handle async tasks without any need for external libraries.
 
