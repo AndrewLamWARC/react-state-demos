@@ -30,7 +30,7 @@ While react has gone on to dominate the UI space, flux has been supplanted by re
 As the years has passed, the number of libraries to manage react state has exploded. A search for "state management" on npmjs.com returns 2698 results as of 28/12/2021.
 While a tiny percentage of these are libraries specific for managing forms and thus not state management libraries, that is still a tremendous number of state management libraries.
 
-This repo is an attempt to review the state of state management libraries as of nearly 2022.
+This repo is an attempt to review the state of state management libraries as of 2022.
 
 ## Ambitions
 
