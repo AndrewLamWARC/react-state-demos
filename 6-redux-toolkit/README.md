@@ -12,9 +12,9 @@ Todo app with "global" state using redux toolkit or RTK
 
 Redux is the most popular js state management library and of the flux architecture and **Redux toolkit is considered a modern take on redux with less boilerplate code and is the recommended way to write an app with redux**
 
-Flux eshews MVC in favour of unidirectionaly data flow - easy to reason about the change in state
+Flux eshews MVC in favour of unidirectionaly data flow - easy to reason about the change in state.
 Actions are created with action creators and dispatched with a central dispatcher to the various stores holding application state.
-With redux, there is one central store. Later, this central store idea is refined by RTK and split up into various composed slices of state
+With redux, there is one central store. Later, this central store idea is refined by RTK and split up into various composed slices of state.
 
 Each component that need state consumes reactive state from the central state via selectors.
 Each component that mutate state uses actions dispatched to the central dispatcher.
