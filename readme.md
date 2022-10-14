@@ -21,7 +21,7 @@ Introduction to state management libraries suitable for react
 The need for state in react is driven by a simple equation - "UI as a function of state". To put it another way, UI is dependent on state.
 
 React was released by Facebook in 2013 as a UI/view only framework.
-React was complemented by a data/state management framwork called flux to form a complete application framework.
+React was complemented by a data/state management framwork called Flux to form a complete application framework.
 
 So right from the start, there was already a separation between the UI and state part of the equation.
 
@@ -32,7 +32,7 @@ While a tiny percentage of these are libraries specific for managing forms and t
 
 This repo is an attempt to review the state of state management libraries as of 2022.
 
-## Ambitions
+## Aims
 
 Build a simple todo react app with just enough complexity to demonstrate the management of state using various libraries but not too complex to obscure the mechanism of each library.
 
@@ -42,7 +42,7 @@ These are the features I will initially implement in the todo app.
 
 1. Add a todo task and expect the task to be added to UI.
 
-2. Each "active" todo can be either "done" or "not dome". The doneness of each task can be toggled using a checkbox.
+2. Each "active" todo can be either "done" or "not done". The doneness of each task can be toggled using a checkbox.
 
 3. Delete a todo task and expect the task to be removed from UI.
 
@@ -50,11 +50,9 @@ These are the features I will initially implement in the todo app.
 
 5. Load a list of todos asynchrously and remotely.
 
-Many state libraries treat async tasks differently from sync tasks. For redux, redux-thunk is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy already integrates redux-thunk and there is no need for a separate install of redux-thunk.
+Many state libraries treat async tasks differently from sync tasks. For redux, additional libraries like redux-thunk is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy already integrates redux-thunk and there is no need for a separate install of redux-thunk.
 
-Some libraries like mobx and zustand can handle async tasks without any need for external libraries.
-
-State libraries like redux normally cannot handle **async actions** alone. An additional library like react-thunk is needed to handle async actions.
+Some libraries like mobx, zustand and valtio can handle async tasks without any need for external libraries.
 
 State libraries can be classified between provider based and non-provider based. Provider based libraries frequently result in pyramid of doom provider component tree.
 I prefer provider-less libraries, however most common state management libraries are provider based.
