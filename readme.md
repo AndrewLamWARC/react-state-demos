@@ -21,9 +21,9 @@ Introduction to state management libraries suitable for react
 The need for state in react is driven by a simple equation - "UI as a function of state". To put it another way, UI is dependent on state.
 
 React was released by Facebook in 2013 as a UI/view only framework.
-React was complemented by a data/state management framwork called Flux to form a complete application framework.
+React was complemented by a data/state management framework called Flux, also by Facebook, to form a complete application framework.
 
-So right from the start, there was already a separation between the UI and state part of the equation.
+Right from the start, there was already a separation between the UI and state part of the equation.
 
 While react has gone on to dominate the UI space, flux has been supplanted by redux in the state management space. Redux itself has been 'officially' supplanted by either context api with hooks or redux toolkit/RTK.
 
@@ -36,7 +36,7 @@ This repo is an attempt to review the state of state management libraries as of 
 
 Build a simple todo react app with just enough complexity to demonstrate the management of state using various libraries but not too complex to obscure the mechanism of each library.
 
-I'm a big fan of learning through concrete examples so feel free to clone this repo and experiment for yourselves. I welcome PRs for refactors and bug fixes as well as PRs that clarify the documentation. PRs for adding new features would be carefully evaluated for usefulness and clarity against complexity.
+I'm a big fan of learning through concrete examples so feel free to clone this repo and experiment for yourselves. I welcome PRs for refactors and bug fixes as well as PRs that clarify the documentation. PRs for adding new features would be evaluated for usefulness and clarity against complexity.
 
 These are the features I will initially implement in the todo app.
 
@@ -50,7 +50,7 @@ These are the features I will initially implement in the todo app.
 
 5. Load a list of todos asynchrously and remotely.
 
-Many state libraries treat async tasks differently from sync tasks. For redux, additional libraries like redux-thunk is normally used to help process async tasks. Other libraries like redux-saga are used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy already integrates redux-thunk and there is no need for a separate install of redux-thunk.
+Many state libraries treat async tasks differently from sync tasks. For redux, additional libraries like redux-thunk is normally used to help process async tasks. Libraries like redux-saga are also used to handle async tasks. redux-saga has a fairly steep learning curve but it can handle more complex scenarios like undo/redo/retry of async tasks. Other libraries based on redux, like redux toolkit (RTK) and easy-peasy already integrates redux-thunk so there is no need for a separate install of redux-thunk.
 
 Some libraries like mobx, zustand and valtio can handle async tasks without any need for external libraries.
 
@@ -65,7 +65,7 @@ I prefer provider-less libraries, however most common state management libraries
 
 - [x] Discussion of flux concepts
 
-- [x] redux - classic implementation with hooks
+- [x] redux - classic implementation but with hooks
 
 - [x] mobx
 
@@ -89,7 +89,7 @@ I prefer provider-less libraries, however most common state management libraries
 
 - [x] xstate
 
-- [ ] react-query - this deals with remote state. Others in the list currently deal with global (non-remote) state so solution would be slightly different
+- [ ] react-query - this deals with remote state. Others in the list currently deal with global (non-remote) state so the solution would be slightly different
 
 - [ ] Redux toolkit query - this also deals with remote state. Should build upon the RTK solution above
 
@@ -119,7 +119,7 @@ The TodoItemNew component contains a textbox and add button to represent a new t
 In a production system, the state of the todos would be stored centrally (single source of truth) on the backend. But this is not the case in these demos.
 
 For production system, the initial load should load the state of the todos from the remote store on the backend.
-Every action on the frontend should eventually be commited to the remote store.
+Every action on the frontend should eventually be persisted to the remote store.
 
 If the state of the remote todo store can only be changed by user gestures on the frontend then there is no need to load all todos from the remote store after the initial load. However, imagine a bulk job that runs on the backend to delete "old" todos, say todos 1 week or older. Then the frontend would need to have a strategy ensure consistency between the state in the remote store and the global store that lives in the frontend. Obviously we then need to keep more state in the stores such as todo create date when we start talking about the age of a todo.
 
@@ -129,7 +129,7 @@ It should be clear that adding these domain requirements to the demos would add 
 
 I draw my inspiration for this work from Jack Herrington's youtube series on state management libraries.
 
-Jack is an excellent teacher and his way of explaining difficult subjects is unmatched. The code used in his videos are made public so you can watch his videos, understand the concepts in it's original code context which allows you to follow his line of reasoning exactly.
+Jack is an excellent teacher and his way of explaining difficult subjects is unmatched. The code used in his videos are made public so you can watch his videos, understand the concepts in it's original context which allows you to follow his line of reasoning exactly.
 
 Please watch, support, like and subscribe to his channel to learn more about react, state managment and programming in general.
 
@@ -138,11 +138,11 @@ Please watch, support, like and subscribe to his channel to learn more about rea
 Client local react state can be handled with useState hook or setState in older class component.
 
 Client global state is state that needs to be shared amongst different components in the component tree.
-Client local state can become global if it is lifted up to a common parent and passed down to children either as direct props or through a context.
+Client local state can become global if it is lifted up to a common parent and passed down to other children either as direct props or through a context.
 
-Server state also called remote state. This was previously lumped together with client global state and handled using all purpose state management libraries but newer libraries like react-query, SWR, RTK query has been released to specificaly manage server state. Look up Tanner Linsley's youtube videos, the author of react-query, to understand the need to differentiate between client and server state.
+Server state is also called remote state. This was previously lumped together with client global state and handled using all purpose state management libraries but newer libraries like react-query, SWR, RTK query has been released to specificaly manage server state. Look up Tanner Linsley's, the author of react-query, youtube videos to understand the need to differentiate between client and server state.
 
-Most older state management libraries manage client global state and it was the dev's responsibility to ensure that state stays consistent with server state. The improvement in DX is worth it using these newer state management libraries if the app's requirement persists state remotely - this is the usual case for most medium to large scale apps.
+Most older state management libraries manage client global state and it was the dev's responsibility to ensure that state stays consistent with server state. The improvement in DX is worth it using these newer state management libraries if the app's requirement is to persist some state remotely - this is the usual case for most medium to large scale apps.
 
 ## My Wish list
 
