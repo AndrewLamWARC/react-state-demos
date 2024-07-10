@@ -61,4 +61,5 @@ jobs:
       working-directory: 9-valtio-advanced
       run: |
         npm install
-        npx webpack
+        npm run build
+        npm run test
