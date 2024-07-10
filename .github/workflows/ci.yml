@@ -7,7 +7,7 @@ on:
 # By default, GHA workflows triggered by Dependabot get a ```GITHUB_TOKEN``` with read-only permissions. You can use ```permissions``` key in workflow to increase the access for the token
 # Set the access for individual scopes, or use permissions:write-all
 permissions:
-  content: write
+  contents: write
   pull-requests: write
   issues: write
   # repository-projects: write
